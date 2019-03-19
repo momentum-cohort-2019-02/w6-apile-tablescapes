@@ -17,6 +17,9 @@ class Post(models.Model):
     class Meta: 
         ordering = ['-date_added']
 
+    def __str__(self):
+        return self.title
+
     def save(self, *args, **kwargs):
         self.set_slug()
         super().save(*args, **kwargs)    
