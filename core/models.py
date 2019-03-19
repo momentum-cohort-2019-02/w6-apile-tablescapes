@@ -17,6 +17,10 @@ class Post(models.Model):
     class Meta: 
         ordering = ['-date_added']
 
+    def get_absolute_url(self):
+        """Returns the url to access a particular instance of MyModelName."""
+        return reverse('model-detail-view', args=[str(self.id)])    
+
     def __str__(self):
         return self.title
 
@@ -41,4 +45,15 @@ class Post(models.Model):
 
         self.slug = slug       
 
-    
+class Comment(models.Model):
+    user_comment = models.TextField(max_length=2000)
+
+    def __str__(self):
+        """String for representing the string representation of book object (in Admin site etc.)."""
+        return self.user_comment
+
+
+class Favorite(models.Model):        
+    user_fav = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    favorited_at = models.DateTimeField(auto_now_add=True)
