@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% if post_list %}
+{% if posts %}
 
     {% for post in posts %}
     <ul>
         <li>
             <a href="{{post.url}}">{{post.title}}</a>
         </li>
+        <li>{{ post.author }}</li>
+        <li>{{ post.description | truncatewords:50 }}
+        <li>{{ post.date_added }}</li>
     </ul>
     {% endfor %}
 

@@ -43,7 +43,7 @@ class Post(models.Model):
             n += 1
             slug = base_slug + "-" + str(n)
 
-        self.slug = slug       
+        self.slug = slug[:50]      
 
 class Comment(models.Model):
     user_comment = models.TextField(max_length=2000)
