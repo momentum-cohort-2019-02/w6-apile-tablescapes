@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TableScapes {% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" , initial-scale=1">
+    <!-- linked to Tachyons if we want it -->
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
+    <!-- Add additional CSS in static file -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% block meta %}{% endblock %}
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="{% url 'index' %}">TableScapes</a>
+        </div>
+        <div>
+            <a href="#">Login/Register</a>
+    </header>
+    <div>{% block content %}{% endblock %}</div>
+</body>
+</html>

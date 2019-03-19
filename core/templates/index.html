@@ -1,1 +1,18 @@
-<h1>Testing Index URL</h1>
+{% extends "base.html" %}
+{% block content %}
+
+{% if post_list %}
+
+    {% for post in posts %}
+    <ul>
+        <li>
+            <a href="{{post.url}}">{{post.title}}</a>
+        </li>
+    </ul>
+    {% endfor %}
+
+{% else %}
+<p>There are no posts</p> <!-- Didn't much care for the if statement but good for troubleshooting in hindsight -->
+{% endif %}
+
+{% endblock %}
