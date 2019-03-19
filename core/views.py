@@ -14,5 +14,5 @@ def index(request):
     return render(request, 'core/index.html', context=context)
 
 def post_detail_view(request, slug):
-    posts = get_object_or_404(Event, slug=slug)
-    return render(request, "core/post_detail.html", {"posts": posts})
+    post = get_object_or_404(Post, slug=slug)
+    return render(request, "core/post_detail.html", {"post": post})
