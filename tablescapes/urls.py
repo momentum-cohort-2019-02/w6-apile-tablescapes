@@ -23,6 +23,5 @@ from core import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='/core/', permanent=True)),
-    # path('', views.index)
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
