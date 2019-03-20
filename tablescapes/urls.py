@@ -23,6 +23,8 @@ from core import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='/core/', permanent=True)),
-    path('core/', views.index, name='index')
+    path('core/', views.index, name='index'),
+    path('post/<slug:slug>/',views.post_detail_view, name='post_detail'),
+    path('core/post/<slug:slug>/fav/', views.post_fav_view, name="post_fav"),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

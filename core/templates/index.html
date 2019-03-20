@@ -8,9 +8,15 @@
         <li>
             <a href="{{post.url}}">{{post.title}}</a>
         </li>
-        <li>{{ post.author }}</li>
-        <li>{{ post.description | truncatewords:50 }}
-        <li>{{ post.date_added }}</li>
+        <li><strong>Author: </strong>{{ post.author }}</li>
+        <li>{{ post.description | truncatewords:30 }}</li>
+        <li><a href="{{ post.get_absolute_url }}"<strong>Comments</strong></a></li> <!--Can add # of comments here once defined-->
+        <li><strong>Posted: </strong>{{ post.date_added }}</li>
+        <li>
+            <form action='{% url 'post_fav' slug=post.slug %}' method="POST">
+            {% csrf_token %}
+            <button type="submit">Like - {{ post.title | truncatewords:2 }}</button>
+        </li>
     </ul>
     {% endfor %}
 
