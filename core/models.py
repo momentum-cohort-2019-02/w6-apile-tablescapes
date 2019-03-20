@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 User = get_user_model()
 
@@ -19,7 +20,7 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a particular instance of MyModelName."""
-        return reverse('model-detail-view', args=[str(self.id)])    
+        return reverse('post_detail', kwargs={"slug": self.slug})
 
     def __str__(self):
         return self.title
