@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from core.models import Post
+from core.models import Post, Favorite
 from django.views import generic
 
 def index(request):
@@ -22,3 +22,4 @@ def post_fav_view(request, slug):
     fav, created = request.favorite.favorite_fav_set.get_or_create(fav=fav)
 
     return redirect(index())
+

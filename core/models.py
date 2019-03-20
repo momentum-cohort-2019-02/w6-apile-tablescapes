@@ -48,6 +48,9 @@ class Post(models.Model):
 
 class Comment(models.Model):
     user_comment = models.TextField(max_length=2000)
+    # user_making_comment need to link to specific user - foreign key
+    # author_link need to link to author
+    # post_link needs to link to post
 
     def __str__(self):
         """String for representing the string representation of book object (in Admin site etc.)."""
@@ -58,3 +61,4 @@ class Favorite(models.Model):
     user_fav = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     favorited_at = models.DateTimeField(auto_now_add=True)
+    
