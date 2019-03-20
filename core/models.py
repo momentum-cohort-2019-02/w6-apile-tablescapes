@@ -14,6 +14,10 @@ class Post(models.Model):
     date_added = models.DateField('Date Added', auto_now_add=True, null=True, blank=True)
     slug = models.SlugField(unique=True)
 
+    fav_by = models.ManyToManyField(
+        User, through='Favorite'
+    )
+
     # Metadata
     class Meta: 
         ordering = ['-date_added']
