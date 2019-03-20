@@ -19,7 +19,7 @@
             <a href="{% url 'index' %}">TableScapes</a>
         </div>
         <div>
-            <a href="#">Login/Register</a>
+            <a href="{% url 'auth_login' %}">Login/Register</a>
     </header>
     <div>{% block content %}{% endblock %}</div>
 </body>
