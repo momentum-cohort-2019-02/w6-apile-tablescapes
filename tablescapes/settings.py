@@ -31,13 +31,19 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    #Third party app
+    'registration',
+
+    #built in django app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core.apps.CoreConfig',
+
+    #created apps
+    'core.apps.CoreConfig',  
 ]
 
 MIDDLEWARE = [
@@ -123,6 +129,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# INTERNAL_IPS = [
-#     '127.0.0.1',
-# ]
+# Registration
+REGISTRATION_OPEN = True                # If True, users can register
+ACCOUNT_ACTIVATION_DAYS = 7     # One-week activation window; you may, of course, use a different value.
+REGISTRATION_AUTO_LOGIN = True  # If True, the user will be automatically logged in.
+LOGIN_REDIRECT_URL = '/core/'  # The page you want users to arrive at after they successful log in
+LOGIN_URL = '/accounts/login/'
