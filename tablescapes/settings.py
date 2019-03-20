@@ -135,3 +135,4 @@ ACCOUNT_ACTIVATION_DAYS = 7     # One-week activation window; you may, of course
 REGISTRATION_AUTO_LOGIN = True  # If True, the user will be automatically logged in.
 LOGIN_REDIRECT_URL = '/core/'  # The page you want users to arrive at after they successful log in
 LOGIN_URL = '/accounts/login/'
+LOGOUT_REDIRECT_URL = '/core/'
