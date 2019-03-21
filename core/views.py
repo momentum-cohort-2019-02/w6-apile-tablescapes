@@ -21,7 +21,7 @@ def post_detail_view(request, slug):
 
 @require_http_methods(['POST'])
 @login_required
-def post_fav_view(request, slug):
+def post_favorite_view(request, slug):
     post = get_object_or_404(Post, slug=slug)
 
     favorite, created = request.user.favorite_set.get_or_create(post=post)
@@ -32,4 +32,4 @@ def post_fav_view(request, slug):
         messages.info(request, f"You have unfavorited {post.title}.")
         favorite.delete()
 
-    return redirect('/core/')
+    return redirect('index')
