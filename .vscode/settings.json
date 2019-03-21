@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "/Users/cb/.local/share/virtualenvs/w6-apile-tablescapes-V-p9oERC/bin/python"
+    "python.pythonPath": "/Users/cb/.local/share/virtualenvs/w6-apile-tablescapes-V-p9oERC/bin/python",
+    "python.linting.prospectorEnabled": true,
+    "python.linting.enabled": true
 }

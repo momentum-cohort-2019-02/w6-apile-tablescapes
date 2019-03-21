@@ -3,24 +3,33 @@
 
 {% if posts %}
 
-    {% for post in posts %}
-    <ul>
-        <li>
-            <a href="{{post.url}}">{{post.title}}</a>
-        </li>
-        <li><strong>Author: </strong>{{ post.author }}</li>
-        <li>{{ post.description | truncatewords:30 }}</li>
-        <li><a href="{{ post.get_absolute_url }}"<strong>Comments</strong></a></li> <!--Can add # of comments here once defined-->
-        <li><strong>Posted: </strong>{{ post.date_added }}</li>
-        <li>
+{% for post in posts %}
+<ul>
+    <li>
+        <a href="{{post.url}}">{{post.title}}</a>
+    </li>
+    <li><strong>Author: </strong>{{ post.author }}</li>
+    <li>{{ post.description | truncatewords:30 }}</li>
+    <li><a href="{{ post.get_absolute_url }}" <strong>Comments</strong></a></li>
+    <!--Can add # of comments here once defined-->
+    <li><strong>Posted: </strong>{{ post.date_added }}</li>
+    <li>{{ post.fav_by.count }} Vote(s)</li>
+    <li>
+    {% if request.user.is_authenticated %}
+        <form action='{% url 'post_favorite' slug=post.slug %}' method="POST">
             {% csrf_token %}
-            <p>{{ post.slug }}</p>
-            <form action='{% url 'post_fav' slug=post.slug %}' method="POST">
-            <button type="submit">Vote</button>
-        </li>
-        <li>{{ post.fav_by.count }} Vote(s)</li>
-    </ul>
-    {% endfor %}
+            <button type="submit">
+                {% if book in request.user.favorite_post_set.all %}
+                Un-Vote
+                {% else %}
+                Vote
+                {% endif %}
+            </button>
+        </form>
+        {% endif %}
+    </li>
+</ul>
+{% endfor %}
 
 {% else %}
 <p>There are no posts</p> <!-- Didn't much care for the if statement but good for troubleshooting in hindsight -->
