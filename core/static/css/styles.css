@@ -2,6 +2,27 @@ ul{
     list-style: none;
 }
 
-.body {
-    background: blue;
+header {
+padding: 1rem;
 }
+
+.body {
+    background: #e0e0e0;
+}
+.hyper_links {
+    /* background: blue; */
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    Padding: 1rem;
+}
+.button_style {
+    background: black;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    padding: 8px 16px;
+    }
+    .button_style:hover {
+        background: blue;
+    }
