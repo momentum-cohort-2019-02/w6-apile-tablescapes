@@ -2,6 +2,14 @@ ul{
     list-style: none;
 }
 
-.body {
-    background: blue;
+body {
+    background: #e0e0e0;
+}
+
+.hyper_links {
+    /* background: blue; */
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    Padding: 1rem;
 }
