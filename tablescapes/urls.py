@@ -25,7 +25,8 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/core/', permanent=True)),
     path('core/', views.index, name='index'),
     path('post/<slug:slug>/',views.post_detail_view, name='post_detail'),
-    path('post/<slug:slug>/fav/', views.post_favorite_view, name="post_favorite"),
+    path('post/<slug:slug>/fav/', views.post_favorite_view, name='post_favorite'),
     path('accounts/', include('registration.backends.simple.urls')),
+    path('core/sort_by_favorite/', views.sort_by_favorite, name='sort_by_favorite'),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

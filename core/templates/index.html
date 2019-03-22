@@ -2,7 +2,9 @@
 {% block content %}
  {% load static %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
-
+<p>Sort by: 
+<a href={% url 'sort_by_favorite'%}>Favorite</a>
+</p>
 {% if posts %}
 
 {% for post in posts %}

@@ -4,16 +4,16 @@ from django.views import generic
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db.models import Count
 
 def index(request):
     """View function for the homepage of the site."""
     posts = Post.objects.all()
+    return render(request, 'index.html', {'posts': posts})
 
-    context = {
-        'posts': posts,
-    }    
-
-    return render(request, 'index.html', context=context)
+def sort_by_favorite(request):
+    sort_by_favorite_posts = Post.objects.annotate(num_favorites=Count('favorite')).order_by('-num_favorites')
+    return render(request, 'index.html', {'posts': sort_by_favorite_posts})
 
 def post_detail_view(request, slug):
     post = get_object_or_404(Post, slug=slug)
