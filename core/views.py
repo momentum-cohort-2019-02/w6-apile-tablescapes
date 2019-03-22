@@ -15,6 +15,10 @@ def sort_by_favorite(request):
     sort_by_favorite_posts = Post.objects.annotate(num_favorites=Count('favorite')).order_by('-num_favorites')
     return render(request, 'index.html', {'posts': sort_by_favorite_posts})
 
+def sort_by_date_added(request):
+    sort_by_date_added = Post.objects.order_by('-date_added')
+    return render(request, 'index.html', {'posts': sort_by_date_added})
+
 def post_detail_view(request, slug):
     post = get_object_or_404(Post, slug=slug)
     return render(request, "core/post_detail.html", {'post': post})

@@ -28,5 +28,6 @@ urlpatterns = [
     path('post/<slug:slug>/fav/', views.post_favorite_view, name='post_favorite'),
     path('accounts/', include('registration.backends.simple.urls')),
     path('core/sort_by_favorite/', views.sort_by_favorite, name='sort_by_favorite'),
+    path('core/sort_by_date_added', views.sort_by_date_added, name='sort_by_date_added')
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
