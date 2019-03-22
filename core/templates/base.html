@@ -6,27 +6,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width" , initial-scale=1">
     {% comment %} <!-- linked to Tachyons if we want it -->
-    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" /> {% endcomment %}
-    {% comment %} <!-- Add additional CSS in static file --> {% endcomment %}
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
+    <!-- Add additional CSS in static file --> {% endcomment %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% block meta %}{% endblock %}
 </head>
-<div class="body">
-    <body>
-        <header>
-            <div class="hyper_links">
-                <a href="{% url 'index' %}"><input class="button_style" type="button"
-          value="TableScapes"></a>
-                {% if user.is_authenticated %}
-                <a href="{% url 'auth_logout' %}">{{ user.username }}</a><input class="button_style" type="button"
-          value="TableScapes"></a>
-                {% else %}
-                <a href="{% url 'auth_login' %}">Login/Register</a>
-                {% endif %}
-            </div>
-        </header>
-        <div>{% block content %}{% endblock %}</div>
-    </body>
-</div>
+
+<body>
+    <header>
+        <div class="hyper_links">
+            <a href="{% url 'index' %}" class="link light-gray underline-hover">TableScapes</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'auth_logout' %}">Logout {{ user.username }}</a>
+        {% else %}
+            <a href="{% url 'auth_login' %}">Login/Register</a>
+            {% endif %}
+        </div>
+    </header>
+    <div>{% block content %}{% endblock %}</div>
+</body>
+
 </html>
