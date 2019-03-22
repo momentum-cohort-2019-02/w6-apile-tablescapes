@@ -5,6 +5,9 @@ from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Count
+from django.http import HttpResponseRedirect
+
+from .forms import CommentForm
 
 def index(request):
     """View function for the homepage of the site."""
@@ -33,3 +36,21 @@ def post_favorite_view(request, slug):
         favorite.delete()
 
     return redirect('index')
+
+def get_comment(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = CommentForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            return HttpResponseRedirect('/thanks/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = CommentForm()
+
+    return render(request, 'post_detail.html', {'form': form})    
