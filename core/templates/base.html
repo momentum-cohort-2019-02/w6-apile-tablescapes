@@ -19,10 +19,9 @@
                 <a href="{% url 'index' %}"><input class="button_style" type="button"
           value="TableScapes"></a>
                 {% if user.is_authenticated %}
-                <a href="{% url 'auth_logout' %}">{{ user.username }}</a><input class="button_style" type="button"
-          value="TableScapes"></a>
+                <a href="{% url 'auth_logout' %}"><input class="button_style" type="button" value="Logout {{ user.username }}"></a>
                 {% else %}
-                <a href="{% url 'auth_login' %}">Login/Register</a>
+                <a href="{% url 'auth_login' %}"><input class="button_style" type="button" value="Login/Register"></a>
                 {% endif %}
             </div>
         </header>
