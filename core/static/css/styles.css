@@ -13,3 +13,14 @@ body {
     justify-content: space-around;
     Padding: 1rem;
 }
+
+.button_style {
+    background: black;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    padding: 8px 16px;
+    }
+    .button_style:hover {
+        background: blue;
+    }
