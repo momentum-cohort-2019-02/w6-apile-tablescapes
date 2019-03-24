@@ -51,10 +51,16 @@ class Post(models.Model):
         self.slug = slug[:50]      
 
 class Comment(models.Model):
-    user_comment = models.TextField(max_length=2000)
+    user_comment = models.TextField(null=True)
+    comment_author = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    comment_post = models.ForeignKey(Post, null=True, blank=True, on_delete=models.CASCADE)
+    comment_time = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     # user_making_comment need to link to specific user - foreign key
     # author_link need to link to author
     # post_link needs to link to post
+
+    class Meta:
+        ordering = ['-comment_time']
 
     def __str__(self):
         """String for representing the string representation of book object (in Admin site etc.)."""

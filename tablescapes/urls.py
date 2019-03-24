@@ -24,8 +24,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='/core/', permanent=True)),
     path('core/', views.index, name='index'),
-    path('post/<slug:slug>/',views.post_detail_view, name='post_detail'),
-    path('post/<slug:slug>/fav/', views.post_favorite_view, name='post_favorite'),
+    path('core/<slug:slug>/',views.post_detail_view, name='post_detail'),
+    path('core/<slug:slug>/fav/', views.post_favorite_view, name='post_favorite'),
+    path('core/<slug:slug>/comment/', views.comment, name='comment'),
     path('accounts/', include('registration.backends.simple.urls')),
     path('core/sort_by_favorite/', views.sort_by_favorite, name='sort_by_favorite'),
     path('core/sort_by_date_added', views.sort_by_date_added, name='sort_by_date_added')
