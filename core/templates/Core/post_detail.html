@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 
 {% block content%}
-<h1>{{post.title}}</h1>
+<h1><a href="{% url 'post_detail' slug=slug %}">{{ post.title }}</a></h1>
 
 <p>{{post.description}}</p>
-<form action="core/post_detail/" method="post"> #needs to be linked to its own view on a url and this will become the form action - user never sees url
+{% comment %} <form action="core/post_detail/" method="post"> #needs to be linked to its own view on a url and this will become the form action - user never sees url {% endcomment %}
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">
 </form>
 
 {% endblock %}
+
+
+
+

@@ -53,8 +53,11 @@ class Post(models.Model):
 class Comment(models.Model):
     user_comment = models.TextField(max_length=2000)
     # user_making_comment need to link to specific user - foreign key
+    comment = models.ForeignKey(User, on_delete=models.CASCADE)
     # author_link need to link to author
+    author = models.ForeignKey(User, related_name='posts', on_delete=models.CASCADE)
     # post_link needs to link to post
+    post = models.ForeignKey(Post)
 
     def __str__(self):
         """String for representing the string representation of book object (in Admin site etc.)."""
