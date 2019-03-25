@@ -25,7 +25,7 @@
         <form action='{% url 'post_favorite' slug=post.slug %}' method="POST">
             {% csrf_token %}
             <button type="submit" class="f6 grow no-underline br-pill ph3 pv2 mb2 dib light-gray bg-navy">
-                {% if book in request.user.favorite_post_set.all %}
+                {% if post in request.user.post_favorite_set.all %}
                 Un-Vote
                 {% else %}
                 Vote
