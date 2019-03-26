@@ -5,6 +5,16 @@
 
 <p>{{post.description}}</p>
 
-<a href="{% url 'comment' post.slug %}">Comment</a>
+<a href="{% url 'comment' post.slug %}">Comment Here</a>
+<div class='comment_style'>
+{% if post.comments.all  %}
+    {% for comment in post.comments.all %}
+        <p>{{ comment.user_comment }}</p>
+        <p><strong>By:</strong>{{ comment.author }}</p>
+    {% endfor %}
+{% else %}
+<p>There are no comments currently.</p>
+{% endif %}
+</div>
 
 {% endblock %}

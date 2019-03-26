@@ -53,5 +53,3 @@ def comment(request, slug):
     else:
         form = CommentForm()
     return render(request, 'comment_new.html', {'form':form})
-    # try core/comment (before moving file up dir)
-    # got rid of .html after post_detail

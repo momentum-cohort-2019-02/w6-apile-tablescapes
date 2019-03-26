@@ -15,7 +15,7 @@ class Post(models.Model):
     slug = models.SlugField(unique=True)
 
     fav_by = models.ManyToManyField(
-        User, through='Favorite'
+        User, related_name="favorite_posts", through='Favorite'
     )
 
     # Metadata
@@ -51,13 +51,11 @@ class Post(models.Model):
         self.slug = slug[:50]      
 
 class Comment(models.Model):
+    """Allows logged in User to comment on a particular Post."""
     user_comment = models.TextField(null=True)
-    comment_author = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
-    comment_post = models.ForeignKey(Post, null=True, blank=True, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name="comments")
+    post = models.ForeignKey(Post, null=True, blank=True, on_delete=models.CASCADE, related_name="comments")
     comment_time = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    # user_making_comment need to link to specific user - foreign key
-    # author_link need to link to author
-    # post_link needs to link to post
 
     class Meta:
         ordering = ['-comment_time']
@@ -68,6 +66,6 @@ class Comment(models.Model):
 
 
 class Favorite(models.Model):        
-    favorite = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     favorited_at = models.DateTimeField(auto_now_add=True)
