@@ -5,6 +5,7 @@ from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Count
+from core.forms import CommentForm
 
 def index(request):
     """View function for the homepage of the site."""
@@ -37,3 +38,18 @@ def post_favorite_view(request, slug):
         favorite.delete()
 
     return redirect('index')
+
+@login_required
+def comment(request, slug):
+
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.post = Post.objects.get(slug=slug)
+            comment.save()
+            return redirect('post_detail', slug=slug)
+    else:
+        form = CommentForm()
+    return render(request, 'comment_new.html', {'form':form})

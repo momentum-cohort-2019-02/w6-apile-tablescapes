@@ -19,17 +19,17 @@
     <li><a href="{{ post.get_absolute_url }}" <strong>Comments</strong></a></li>
     <!--Can add # of comments here once defined-->
     <li><strong>Posted: </strong>{{ post.date_added }}</li>
-    <li>{{ post.fav_by.count }} Vote(s)</li>
     <li>
     {% if request.user.is_authenticated %}
         <form action='{% url 'post_favorite' slug=post.slug %}' method="POST">
             {% csrf_token %}
             <button type="submit" class="f6 grow no-underline br-pill ph3 pv2 mb2 dib light-gray bg-navy">
-                {% if book in request.user.favorite_post_set.all %}
-                Un-Vote
+                {% if post in request.user.favorite_posts.all %}
+                <i class="fas fa-thumbs-up"></i>
                 {% else %}
-                Vote
+                <i class="far fa-thumbs-up"></i>
                 {% endif %}
+            {{ post.fav_by.count }}
             </button>
         </form>
         {% endif %}

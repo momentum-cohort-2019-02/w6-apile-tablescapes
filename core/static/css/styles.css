@@ -24,3 +24,7 @@ body {
     .button_style:hover {
         background: blue;
     }
+
+.comment_style {
+    background-color: white;
+}
